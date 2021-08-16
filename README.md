@@ -1,3 +1,0 @@
-# Spartan
-
-Amazon product ranker
