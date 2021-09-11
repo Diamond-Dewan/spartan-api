@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_seo_metas",
+  "info": {
+    "name": "META",
+    "icon": "bullseye",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "content": {
+      "type": "text"
+    }
+  }
+}

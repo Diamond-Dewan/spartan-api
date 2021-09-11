@@ -1,0 +1,48 @@
+{
+  "kind": "collectionType",
+  "collectionName": "posts",
+  "info": {
+    "name": "post",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "rankedList": {
+      "type": "json",
+      "required": true
+    },
+    "body": {
+      "type": "richtext"
+    },
+    "slug": {
+      "type": "string",
+      "unique": true,
+      "required": true,
+      "minLength": 10
+    },
+    "batch": {
+      "model": "batch",
+      "via": "posts"
+    },
+    "categories": {
+      "collection": "category",
+      "via": "posts",
+      "dominant": true
+    },
+    "SEO": {
+      "type": "component",
+      "repeatable": false,
+      "component": "seo.seo"
+    }
+  }
+}

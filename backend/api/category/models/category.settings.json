@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "categories",
+  "info": {
+    "name": "category"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "department": {
+      "model": "department",
+      "via": "categories"
+    },
+    "posts": {
+      "via": "categories",
+      "collection": "post"
+    }
+  }
+}
