@@ -26,6 +26,10 @@
     "posts": {
       "via": "categories",
       "collection": "post"
+    },
+    "batches": {
+      "via": "category",
+      "collection": "batch"
     }
   }
 }

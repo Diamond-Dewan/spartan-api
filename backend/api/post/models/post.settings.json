@@ -31,8 +31,8 @@
       "minLength": 10
     },
     "batch": {
-      "model": "batch",
-      "via": "posts"
+      "via": "posts",
+      "model": "batch"
     },
     "categories": {
       "collection": "category",
