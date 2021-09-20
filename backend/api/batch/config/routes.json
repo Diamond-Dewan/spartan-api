@@ -27,7 +27,7 @@
     {
       "method": "POST",
       "path": "/batches",
-      "handler": "batch.create",
+      "handler": "batch.index",
       "config": {
         "policies": []
       }
