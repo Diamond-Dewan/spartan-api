@@ -39,6 +39,27 @@ const getCategoryId = async (departmentId, categoryName) => {
   }
 };
 
+const generateSlug = async (title='') => {
+  const slug = title.replaceAll(' ', '-');
+
+  return slug;
+}
+
+const createPost = async (keyword, product) => {
+  console.log(`Batch::Service::CreatePost`);
+  // get title
+  const title = keyword;
+  // create slug
+  const slug = generateSlug(title);
+  // get department 
+  const departmentName = product.ItemInfo && product.ItemInfo.Classifications.Binding && product.ItemInfo.Classifications.Binding.DisplayValue;
+  const deptId = await getDepartmentId(departmentName);
+  // get category
+  const categoryName = product.ItemInfo && product.ItemInfo.Classifications.ProductGroup && product.ItemInfo.Classifications.ProductGroup.DisplayValue;
+  const categoryId = await getCategoryId(deptId, categoryName);
+  
+}
+
 module.exports = {
   save: async (keywords = []) => {
     // const length = keywords.length;
@@ -47,12 +68,8 @@ module.exports = {
       console.log(`Batch::Service:: ${products.length} items found for ${keyword}`);
       console.log(`${keywords.length} keywords created...`);
       for (const product of products) {
-        const departmentName = product.ItemInfo && product.ItemInfo.Classifications.Binding && product.ItemInfo.Classifications.Binding.DisplayValue;
-        const categoryName = product.ItemInfo && product.ItemInfo.Classifications.ProductGroup && product.ItemInfo.Classifications.ProductGroup.DisplayValue;
-        
-        const deptId = await getDepartmentId(departmentName);
-        const categoryId = await getCategoryId(deptId, categoryName);
-      }
+        await createPost(keyword, product);
+      };
 
       return products;
     }
