@@ -6,7 +6,7 @@ module.exports = {
     let entity;
     const { keywords } = ctx.request.body;
     const items = keywords.split(',').map((item) => item.trim());
-    const response = await strapi.services.batch.fetchProduct(items);
+    const response = await strapi.services.batch.save(items);
 
     return response;
   },

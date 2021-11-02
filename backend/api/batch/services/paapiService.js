@@ -26,7 +26,9 @@ var searchItems = (keyword, pageNumber) => {
     'ItemInfo.ContentRating',
     'ItemInfo.Features',
     'ItemInfo.ProductInfo',
+    'Images.Primary.Small',
     'Images.Primary.Medium',
+    'Images.Primary.Large',
     'SearchRefinements',
   ];
   
@@ -87,6 +89,7 @@ const filterProducts = (products) => {
     product.BrowseNodeInfo.BrowseNodes[0].ContextFreeName
   );
   // console.log(`Categories:: `, categories);
+  console.log(`Category list: ${categories}`);
   const seletedCategory = getMostCommon(categories);
   products.forEach((product) => {
     const category = product.BrowseNodeInfo && 
@@ -95,27 +98,35 @@ const filterProducts = (products) => {
     if (category === seletedCategory) filteredProducts.push(product);
   });
   console.log(`Total filteredProducts: `, filteredProducts.length);
-  
+  console.log(filteredProducts[0]);
   return filteredProducts;
 };
 
 const fetchProducts = async (keyword) => {
-  console.log(`BatchService::FetchProducts::Start for [${keyword}]`);
-  let items = [];
-  const pages = Array.from(Array(3).keys());    // pages to read
-  const products = await pages.map(async (page) => {
-    const items = await searchItems(keyword, (page+1));
-
-    return items;
-  });
-  let itemsLists = await Promise.all(products);
-  console.log('Total Products:: ', itemsLists.length);
-  itemsLists.forEach((list) => {
-    items = items.concat(list);
-  });
-  console.log(`All Items: `, items.length);
-  
-  return filterProducts(items);
+  console.log(`BatchService::FetchProducts::Start for "${keyword}"`);
+  const pages = 3;    // pages to read
+  const productBundels = [];
+  let currentPage = 1;
+  const search = async () => {
+    const items = await searchItems(keyword, currentPage);
+    productBundels.push(items);
+    currentPage++;
+    if (currentPage <= pages) {
+      return search();
+    } else {
+      let products = [];
+      console.log('Total Product Pages: ', productBundels.length);
+      productBundels.forEach((bundel) => {
+        products = products.concat(bundel);
+      });
+      console.log(`All Products: `, products.length);
+      const filteredProducts =  filterProducts(products);
+      
+      return filteredProducts;
+    }
+  };
+  const products = await search();
+  return products;
 };
 
 module.exports = {
