@@ -9,9 +9,9 @@ const create = async (modelName, properties) => {
   return item;
 };
 
-const createBatch = async (keys) => {
+const createBatch = async (keys=[]) => {
   const modelName = 'batch';
-  const keywords = keys && keys.toString();
+  const keywords = keys && keys.join(',\n');
   const existingBatch = await strapi.query(modelName).find({ keywords });
   if (existingBatch.length > 0) {
     return existingBatch[0];
