@@ -2,7 +2,8 @@
   "kind": "collectionType",
   "collectionName": "categories",
   "info": {
-    "name": "category"
+    "name": "category",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -30,6 +31,11 @@
     "batches": {
       "via": "category",
       "collection": "batch"
+    },
+    "slug": {
+      "type": "string",
+      "required": true,
+      "unique": true
     }
   }
 }

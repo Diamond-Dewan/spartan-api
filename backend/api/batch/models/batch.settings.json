@@ -21,8 +21,8 @@
       "collection": "post"
     },
     "category": {
-      "model": "category",
-      "via": "batches"
+      "via": "batches",
+      "model": "category"
     }
   }
 }

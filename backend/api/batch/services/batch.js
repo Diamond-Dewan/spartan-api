@@ -3,6 +3,13 @@
 const { fetchProducts } = require("./paapiService");
 const { findByName } = require("./utils");
 
+const generateSlug = (title='') => {
+  const slug = title.toLowerCase().replace(/\s/g, "-");
+  console.log(`Generated Slug: `, slug);
+
+  return slug;
+};
+
 const create = async (modelName, properties) => {
   console.log(`Batch::Service::Create`);
   const item = await strapi.query(modelName).create({ ...properties });
@@ -46,6 +53,7 @@ const getCategoryId = async (departmentId, categoryName) => {
   if (!item) {
     const category = await create(modelName, {
       name: categoryName,
+      slug: generateSlug(categoryName),
       department: [departmentId],
       created_by: 1,
       updated_by: 1,
@@ -57,13 +65,6 @@ const getCategoryId = async (departmentId, categoryName) => {
     return item.id;
   }
 };
-
-const generateSlug = (title='') => {
-  const slug = title.replace(/\s/g, "-");
-  console.log(`Generated Slug: `, slug);
-
-  return slug;
-}
 
 const createPost = async (keyword, batchNumber) => {
   console.log(`Batch::Service::CreatePost`);
