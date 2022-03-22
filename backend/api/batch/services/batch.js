@@ -71,7 +71,7 @@ const createPost = async (keyword, batchNumber) => {
   const modelName = 'post'
   // get title
   const title = keyword;
-  // create slugj
+  // create slug
   const slug = generateSlug(title);
   const existingPost = await strapi.query(modelName).find({ slug });
   // return if exists
