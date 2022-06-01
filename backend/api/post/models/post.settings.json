@@ -17,7 +17,7 @@
       "required": true,
       "unique": true
     },
-    "rankedList": {
+    "rankList": {
       "type": "json",
       "required": true
     },
