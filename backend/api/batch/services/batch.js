@@ -75,7 +75,7 @@ const getRankList = (products) => {
   return products.map((product) => {
     return {
       title: product.ItemInfo?.Title?.DisplayValue,
-      images: [product.Images?.Primary, ...product.Images?.Variants],
+      images: [product.Images?.Primary, product.Images?.Variants?.slice()],
       contents: product.ItemInfo?.Features?.DisplayValues,
       brand: product.ItemInfo?.ByLineInfo?.Brand,
       manufacturer: product.ItemInfo?.ByLineInfo?.Manufacturer,
