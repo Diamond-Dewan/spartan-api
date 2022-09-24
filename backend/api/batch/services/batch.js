@@ -98,7 +98,7 @@ const getRankList = (products) => {
   });
 };
 
-const createPost = async (keyword, batchNumber) => {
+const createPost = async (keyword, faqs, batchNumber) => {
   console.log(`Batch::Service::CreatePost`);
   // get title
   const title = keyword;
@@ -130,6 +130,7 @@ const createPost = async (keyword, batchNumber) => {
     title,
     slug,
     rankList: getRankList(products),
+    faq: [...faqs],
     batch: [batchNumber],
     categories: [categoryId],
   });
@@ -174,14 +175,14 @@ const updatePost = async (keyword, batchNumber) => {
 };
 
 module.exports = {
-  save: async (keywords = []) => {
+  save: async (keywords = [], faqCollection = {}) => {
     const length = keywords.length;
     console.log(`Keywords:: `, length);
     // create batch
     const batch = await createBatch(keywords);
 
     for (const keyword of keywords) {
-      await createPost(keyword, batch.id);
+      await createPost(keyword, faqCollection[keyword], batch.id);
     }
     console.log(`${keywords.length} keywords created...`);
 

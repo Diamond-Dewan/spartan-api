@@ -43,6 +43,9 @@
       "type": "component",
       "repeatable": false,
       "component": "seo.seo"
+    },
+    "faq": {
+      "type": "json"
     }
   }
 }
