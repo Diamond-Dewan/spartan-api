@@ -70,11 +70,11 @@ export default function Header() {
             variant="h6"
             noWrap
             component="div"
-            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+            sx={{ flexGrow: 1, display: { xs: 'block', sm: 'block' } }}
           >
             MUI
           </Typography>
-          <Search sx={{ ml: 2 }}>
+          <Search sx={{ ml: 2, display: 'none' }}>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
