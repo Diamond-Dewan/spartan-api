@@ -79,7 +79,7 @@ const getRankList = (products) => {
       contents: product.ItemInfo?.Features?.DisplayValues,
       brand: product.ItemInfo?.ByLineInfo?.Brand,
       manufacturer: product.ItemInfo?.ByLineInfo?.Manufacturer,
-      audienceRating: product.ItemInfo?.ContentRating?.AudienceRating,
+      audienceRating: product.ItemInfo?.ContentRating,
       model: product.ItemInfo?.ManufactureInfo?.Model,
       warranty: product.ItemInfo?.ManufactureInfo?.Warranty,
       productInfo: {
@@ -90,8 +90,10 @@ const getRankList = (products) => {
           width: product.ItemInfo?.ProductInfo?.ItemDimensions?.Width,
           weight: product.ItemInfo?.ProductInfo?.ItemDimensions?.Weight,
         },
+        releaseDate: product.ItemInfo?.ProductInfo?.ReleaseDate?.DisplayValue,
       },
       detailPageURL: product.DetailPageURL,
+      fullInfo: product.ItemInfo,
     };
   });
 };
