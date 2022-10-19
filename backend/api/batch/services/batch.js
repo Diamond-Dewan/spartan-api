@@ -15,6 +15,18 @@ const generateSlug = (title = "") => {
   return slug;
 };
 
+const faqMapper = (faqCollection = [{"index": [{}]}]) => {
+  const faqMap = {};
+
+  faqCollection.forEach((item) => {
+    for (const [key, value] of Object.entries(item)) {
+      faqMap[key] = value;
+    };
+  });
+
+  return faqMap;
+};
+
 const create = async (modelName, properties) => {
   console.log(`Batch::Service::Create `, modelName);
   const item = await strapi.query(modelName).create({ ...properties });
@@ -98,7 +110,7 @@ const getRankList = (products) => {
   });
 };
 
-const createPost = async (keyword, faqs, batchNumber) => {
+const createPost = async ({keyword, faqs, batchNumber}) => {
   console.log(`Batch::Service::CreatePost`);
   // get title
   const title = keyword;
@@ -130,7 +142,7 @@ const createPost = async (keyword, faqs, batchNumber) => {
     title,
     slug,
     rankList: getRankList(products),
-    faq: [...faqs],
+    faq: faqs,
     batch: [batchNumber],
     categories: [categoryId],
   });
@@ -175,14 +187,16 @@ const updatePost = async (keyword, batchNumber) => {
 };
 
 module.exports = {
-  save: async (keywords = [], faqCollection = {}) => {
+  save: async (keywords = [], faqCollection = []) => {
     const length = keywords.length;
     console.log(`Keywords:: `, length);
+    // map faq collections
+    const faqMap = faqMapper(faqCollection)
     // create batch
     const batch = await createBatch(keywords);
 
     for (const keyword of keywords) {
-      await createPost(keyword, faqCollection[keyword], batch.id);
+      await createPost({ keyword, faqs: faqMap[keyword], batchNumber: batch.id });
     }
     console.log(`${keywords.length} keywords created...`);
 
