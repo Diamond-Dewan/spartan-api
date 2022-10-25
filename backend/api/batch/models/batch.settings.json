@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "batches",
+  "info": {
+    "name": "batch",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "keywords": {
+      "type": "richtext",
+      "required": true
+    },
+    "posts": {
+      "via": "batch",
+      "collection": "post"
+    },
+    "category": {
+      "via": "batches",
+      "model": "category"
+    }
+  }
+}

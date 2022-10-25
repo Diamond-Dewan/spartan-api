@@ -7,22 +7,25 @@
     "develop": "strapi develop",
     "start": "strapi start",
     "build": "strapi build",
-    "strapi": "strapi"
+    "strapi": "strapi",
+    "start:dev": "yarn develop"
   },
   "devDependencies": {},
   "dependencies": {
-    "strapi": "3.6.6",
-    "strapi-admin": "3.6.6",
-    "strapi-utils": "3.6.6",
-    "strapi-plugin-content-type-builder": "3.6.6",
-    "strapi-plugin-content-manager": "3.6.6",
-    "strapi-plugin-users-permissions": "3.6.6",
-    "strapi-plugin-email": "3.6.6",
-    "strapi-plugin-upload": "3.6.6",
-    "strapi-plugin-i18n": "3.6.6",
-    "strapi-connector-bookshelf": "3.6.6",
     "knex": "0.21.18",
-    "sqlite3": "5.0.0"
+    "paapi5-nodejs-sdk": "^1.1.0",
+    "pg": "^8.8.0",
+    "sqlite3": "5.0.0",
+    "strapi": "3.6.6",
+    "strapi-admin": "3.6.10",
+    "strapi-connector-bookshelf": "3.6.6",
+    "strapi-plugin-content-manager": "3.6.6",
+    "strapi-plugin-content-type-builder": "3.6.6",
+    "strapi-plugin-email": "3.6.6",
+    "strapi-plugin-i18n": "3.6.6",
+    "strapi-plugin-upload": "3.6.6",
+    "strapi-plugin-users-permissions": "3.6.6",
+    "strapi-utils": "3.6.6"
   },
   "author": {
     "name": "A Strapi developer"
@@ -31,7 +34,7 @@
     "uuid": "0ad74ef3-eae1-4135-af68-85435e2cb1f2"
   },
   "engines": {
-    "node": ">=10.16.0 <=14.x.x",
+    "node": "14.20.1",
     "npm": "^6.0.0"
   },
   "license": "MIT"
