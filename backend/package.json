@@ -15,6 +15,7 @@
     "knex": "0.21.18",
     "mysql": "^2.18.1",
     "paapi5-nodejs-sdk": "^1.1.0",
+    "pg": "^8.8.0",
     "sqlite3": "5.0.0",
     "strapi": "3.6.6",
     "strapi-admin": "3.6.10",
@@ -39,3 +40,4 @@
   },
   "license": "MIT"
 }
+ 
