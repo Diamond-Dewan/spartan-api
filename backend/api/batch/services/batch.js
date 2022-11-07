@@ -72,8 +72,6 @@ const getCategoryId = async (departmentId, categoryName) => {
       name: categoryName,
       slug: generateSlug(categoryName),
       department: [departmentId],
-      created_by: 1,
-      updated_by: 1,
     });
     console.log(`Created Category:: `, category);
 
